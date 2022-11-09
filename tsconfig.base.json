@@ -15,7 +15,7 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@fiscaliste/core/user": ["libs/core/user/src/index.ts"]
+            "@fiscaliste/users": ["libs/users/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]
