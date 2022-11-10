@@ -12,7 +12,7 @@ import { UsersEffects } from './+state/users.effects';
             fromUsers.USERS_FEATURE_KEY,
             fromUsers.usersReducer
         ),
-        EffectsModule.forFeature([UsersEffects]),
+        EffectsModule.forFeature([UsersEffects])
     ],
 })
 export class UsersModule {}
