@@ -3,4 +3,5 @@ export interface User {
     weeklyHours?: number;
     dailyCommuteHours?: number;
     grossIncome?: number;
+    netIncome?: number;
 }

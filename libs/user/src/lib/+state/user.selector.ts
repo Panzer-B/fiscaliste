@@ -13,3 +13,23 @@ export const selectHourlyRate = createSelector(
   selectFeature,
   (state: User) => state.hourlyRate
 );
+
+export const selectWeeklyHours = createSelector(
+    selectFeature,
+    (state: User) => state.weeklyHours
+);
+
+export const selectDailyCommute = createSelector(
+    selectFeature,
+    (state: User) => state.dailyCommuteHours
+);
+
+export const selectGrossIncome = createSelector(
+    selectFeature,
+    (state: User) => state.grossIncome
+);
+
+export const selectNetIncome = createSelector(
+    selectFeature,
+    (state: User) => state.netIncome
+);

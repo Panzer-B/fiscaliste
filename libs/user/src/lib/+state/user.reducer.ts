@@ -9,5 +9,21 @@ export const userReducer = createReducer(
     on(UserActions.setUserHourlyRate, (state, { hourlyRate }) => ({
         ...state,
         hourlyRate,
+    })),
+    on(UserActions.setWeeklyHours, (state, { weeklyHours }) => ({
+        ...state,
+        weeklyHours,
+    })),
+    on(UserActions.setDailyCommuteHours, (state, { dailyCommuteHours }) => ({
+        ...state,
+        dailyCommuteHours,
+    })),
+    on(UserActions.setGrossIncome, (state, { grossIncome }) => ({
+        ...state,
+        grossIncome,
+    })), 
+    on(UserActions.setNetIncome, (state, { netIncome }) => ({
+        ...state,
+        netIncome,
     }))
 );
