@@ -1,0 +1,44 @@
+{
+    "gst": 0.15,
+    "hst": 0.4,
+    "provincialRates": [
+        {
+            "maxIncome": 46295,
+            "rate": 0.15
+        },
+        {
+            "maxIncome": 92580,
+            "rate": 20
+        },
+        {
+            "maxIncome": 112655,
+            "rate": 0.24
+        },
+        {
+            "maxIncome": 112655,
+            "rate": 0.2575
+        }
+    ],
+    "federalRates": [
+        {
+            "maxIncome": 50197,
+            "rate": 0.15
+        },
+        {
+            "maxIncome": 100392,
+            "rate": 20.5
+        },
+        {
+            "maxIncome": 155625,
+            "rate": 0.26
+        },
+        {
+            "maxIncome": 221708,
+            "rate": 0.29
+        },
+        {
+            "maxIncome": 9999999999,
+            "rate": 0.33
+        }
+    ]
+}
