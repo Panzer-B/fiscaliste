@@ -21,7 +21,7 @@ export const userReducer = createReducer(
     on(UserActions.setGrossIncome, (state, { grossIncome }) => ({
         ...state,
         grossIncome,
-    })), 
+    })),
     on(UserActions.setNetIncome, (state, { netIncome }) => ({
         ...state,
         netIncome,

@@ -16,7 +16,9 @@ describe('user reducer', () => {
 
     test('setDailyCommuteHours', () => {
         const state = {};
-        const action = UserActions.setDailyCommuteHours({ dailyCommuteHours: 2 });
+        const action = UserActions.setDailyCommuteHours({
+            dailyCommuteHours: 2,
+        });
         expect(userReducer(state, action)).toEqual({ dailyCommuteHours: 2 });
     });
 
