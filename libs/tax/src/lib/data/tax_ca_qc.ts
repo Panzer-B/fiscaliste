@@ -1,90 +1,90 @@
 export const tax_ca_qc = {
-    "consummerTaxes": [
+    consummerTaxes: [
         {
-            "name": "gst",
-            "rate": "0.15"
+            name: 'gst',
+            rate: 0.05,
         },
         {
-            "name": "gst",
-            "rate": "0.4"
-        }
+            name: 'qst',
+            rate: 0.09975,
+        },
     ],
-    "incomeTaxes": [
+    incomeTaxes: [
         {
-            "name": "RRQ",
-            "rates": [
+            name: 'RRQ',
+            brackets: [
                 {
-                    "max": 3500,
-                    "rate": 0
+                    max: 3500,
+                    rate: 0,
                 },
                 {
-                    "max": 64900,
-                    "rate": 0.0615
-                }
-            ]
+                    max: 64900,
+                    rate: 0.0615,
+                },
+            ],
         },
         {
-            "name": "RQAP",
-            "rates": [
+            name: 'RQAP',
+            brackets: [
                 {
-                    "max": 88000,
-                    "rate": 0.00494
-                }
-            ]
+                    max: 88000,
+                    rate: 0.00494,
+                },
+            ],
         },
         {
-            "name": "ProvincialTaxes",
-            "rates": [
+            name: 'ProvincialTaxes',
+            brackets: [
                 {
-                    "max": 16143,
-                    "rate": 0
+                    max: 16143,
+                    rate: 0,
                 },
                 {
-                    "max": 46295,
-                    "rate": 0.15
+                    max: 46295,
+                    rate: 0.15,
                 },
                 {
-                    "max": 92580,
-                    "rate": 0.20
+                    max: 92580,
+                    rate: 0.2,
                 },
                 {
-                    "max": 112655,
-                    "rate": 0.24
+                    max: 112655,
+                    rate: 0.24,
                 },
                 {
-                    "max": 9999999999,
-                    "rate": 0.2575
-                }
-            ]
+                    max: 9999999999,
+                    rate: 0.2575,
+                },
+            ],
         },
         {
-            "name": "FederalTaxes",
-            "rates": [
+            name: 'FederalTaxes',
+            brackets: [
                 {
-                    "max": 14398,
-                    "rate": 0
+                    max: 14398,
+                    rate: 0,
                 },
                 {
-                    "max": 50197,
-                    "rate": 0.15
+                    max: 50197,
+                    rate: 0.15,
                 },
                 {
-                    "max": 100392,
-                    "rate": 0.205
+                    max: 100392,
+                    rate: 0.205,
                 },
                 {
-                    "max": 155625,
-                    "rate": 0.26
+                    max: 155625,
+                    rate: 0.26,
                 },
                 {
-                    "max": 221708,
-                    "rate": 0.29
+                    max: 221708,
+                    rate: 0.29,
                 },
                 {
-                    "max": 9999999999,
-                    "rate": 0.33
-                }
-            ]
-        }
-    ]
-}
+                    max: 9999999999,
+                    rate: 0.33,
+                },
+            ],
+        },
+    ],
+};

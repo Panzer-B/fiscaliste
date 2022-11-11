@@ -1,9 +1,14 @@
 export interface IncomeTax {
     name: string;
-    rates: TaxRate[]
+    brackets: TaxBracket[];
+}
+
+export interface TaxBracket {
+    max: number;
+    rate: number;
 }
 
 export interface TaxRate {
-    max: number;
+    name: string;
     rate: number;
 }
