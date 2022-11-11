@@ -16,6 +16,7 @@ node_modules
 *.launch
 .settings/
 *.sublime-workspace
+fiscaliste_bkp
 
 # IDE - VSCode
 .vscode/*
