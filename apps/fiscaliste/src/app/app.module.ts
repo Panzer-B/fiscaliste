@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './app.routes';
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule, StoreModule.forRoot({}), EffectsModule.forRoot()],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(appRoutes, {
+            initialNavigation: 'enabledBlocking',
+        }),
+    ],
     providers: [],
     bootstrap: [AppComponent],
 })
