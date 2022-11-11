@@ -10,15 +10,22 @@ export const getTaxAmountByRate = (amount: number, rate: number): number => {
 //==========================
 // Income Tax
 //==========================
+/**
+ * getTaxAMountByIncomeTax
+ * apply all the different tax rate brackets on an income
+ * @param amount 
+ * @param tax 
+ * @returns 
+ */
 export const getTaxAmountByIncomeTax = (
     amount: number,
-    incomeTax: IncomeTax
+    tax: IncomeTax
 ): number => {
     let totalTaxes = 0; // total taxes
     let amountBracketToCalculate = 0; // bracket [0-100 = 100, 100-250 = 150, 150-500 = 350]
     let totalBracket = 0; // totalBracket that has been calculated, adds up until it equals the amount.
 
-    incomeTax.brackets.forEach((taxBracket: TaxBracket) => {
+    tax.brackets.forEach((taxBracket: TaxBracket) => {
         amountBracketToCalculate =
             (amount < taxBracket.max ? amount : taxBracket.max) - totalBracket;
         totalBracket += amountBracketToCalculate;
@@ -31,16 +38,25 @@ export const getTaxAmountByIncomeTax = (
     return totalTaxes;
 };
 
+/**
+ * getIncomeTaxesTotal
+ * calculate all income taxes on a gross income (federal + provincial)
+ */
 export const getIncomeTaxesTotal = (
     income: number,
-    incomeTaxes: IncomeTax[]
+    taxes: IncomeTax[]
 ): number => {
     let total = 0;
-    incomeTaxes.forEach((incomeTax: IncomeTax) => {
-        const amountToAdd = getTaxAmountByIncomeTax(income, incomeTax);
+    taxes.forEach((tax: IncomeTax) => {
+        const amountToAdd = getTaxAmountByIncomeTax(income, tax);
         total += amountToAdd;
     });
     return Math.round(total * 100) / 100;
+};
+
+export const getNetIncome = (grossIncome: number, taxes: IncomeTax[]): number => {
+    // TODO : apply tax credits
+    return grossIncome - getIncomeTaxesTotal(grossIncome, taxes);
 };
 
 //==========================
