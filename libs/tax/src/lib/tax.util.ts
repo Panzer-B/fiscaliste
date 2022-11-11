@@ -3,9 +3,8 @@ import { IncomeTax, TaxBracket, TaxRate } from './tax.model';
 //==========================
 // Utils
 //==========================
-export const getTaxAmountByRate = (amount: number, rate: number): number => {
-    return amount * rate;
-};
+export const getTaxAmountByRate = (amount: number, rate: number): number =>
+    Math.round(amount * rate * 100) / 100;
 
 //==========================
 // Income Tax
@@ -13,9 +12,9 @@ export const getTaxAmountByRate = (amount: number, rate: number): number => {
 /**
  * getTaxAMountByIncomeTax
  * apply all the different tax rate brackets on an income
- * @param amount 
- * @param tax 
- * @returns 
+ * @param amount
+ * @param tax
+ * @returns
  */
 export const getTaxAmountByIncomeTax = (
     amount: number,
@@ -45,16 +44,15 @@ export const getTaxAmountByIncomeTax = (
 export const getIncomeTaxesTotal = (
     income: number,
     taxes: IncomeTax[]
-): number => {
-    let total = 0;
-    taxes.forEach((tax: IncomeTax) => {
-        const amountToAdd = getTaxAmountByIncomeTax(income, tax);
-        total += amountToAdd;
-    });
-    return Math.round(total * 100) / 100;
-};
+): number =>
+    taxes
+        .map((tax: IncomeTax) => getTaxAmountByIncomeTax(income, tax))
+        .reduce((partialSum, currentAmount) => partialSum + currentAmount, 0);
 
-export const getNetIncome = (grossIncome: number, taxes: IncomeTax[]): number => {
+export const getNetIncome = (
+    grossIncome: number,
+    taxes: IncomeTax[]
+): number => {
     // TODO : apply tax credits
     return grossIncome - getIncomeTaxesTotal(grossIncome, taxes);
 };
@@ -65,10 +63,13 @@ export const getNetIncome = (grossIncome: number, taxes: IncomeTax[]): number =>
 export const getHarmonizedSalesTaxTotal = (
     amount: number,
     taxRates: TaxRate[]
-): number => {
-    let totalTaxes = 0;
-    taxRates.forEach((taxRate: TaxRate) => {
-        totalTaxes += getTaxAmountByRate(amount, taxRate.rate);
-    });
-    return Math.round(totalTaxes * 100) / 100;
-};
+): number =>
+    Number(
+        taxRates
+            .map((taxRate: TaxRate) => getTaxAmountByRate(amount, taxRate.rate))
+            .reduce(
+                (partialSum, currentAmount) => partialSum + currentAmount,
+                0
+            )
+            .toFixed(2)
+    );

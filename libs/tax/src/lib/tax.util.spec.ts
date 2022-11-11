@@ -4,12 +4,12 @@ import {
     getTaxAmountByIncomeTax,
     getTaxAmountByRate,
     getHarmonizedSalesTaxTotal,
-    getNetIncome
+    getNetIncome,
 } from './tax.util';
 import { tax_ca_qc } from './data/tax_ca_qc';
 
 describe('tax util', () => {
-    test('getTaxTotalByRate', () => {
+    test('getTaxAmountByRate', () => {
         const rate = 0.05;
         expect(getTaxAmountByRate(100, rate)).toEqual(5);
         expect(getTaxAmountByRate(1000, rate)).toEqual(50);
@@ -53,5 +53,5 @@ describe('tax util', () => {
         const grossIncome = 40000;
         const taxRates = tax_ca_qc.incomeTaxes;
         expect(getNetIncome(grossIncome, taxRates)).toEqual(30138.8);
-    })
+    });
 });
