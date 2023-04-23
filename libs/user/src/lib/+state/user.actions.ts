@@ -6,21 +6,16 @@ export const setUserHourlyRate = createAction(
 );
 
 export const setWeeklyHours = createAction(
-    '[User] Set Hourly Rate',
+    '[User] Set Weekly Hours',
     props<{ weeklyHours: number }>()
 );
 
 export const setDailyCommuteHours = createAction(
-    '[User] Set Hourly Rate',
+    '[User] Set Daily Commute Hours',
     props<{ dailyCommuteHours: number }>()
 );
 
 export const setGrossIncome = createAction(
-    '[User] Set Hourly Rate',
+    '[User] Set Gross Income',
     props<{ grossIncome: number }>()
-);
-
-export const setNetIncome = createAction(
-    '[User] Set Hourly Rate',
-    props<{ netIncome: number }>()
 );

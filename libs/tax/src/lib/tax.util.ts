@@ -1,4 +1,4 @@
-import { IncomeTax, TaxBracket, TaxRate } from './tax.model';
+import { IncomeTax, IncomeTaxBracket, TaxRate } from './tax.model';
 
 //==========================
 // Utils
@@ -24,7 +24,7 @@ export const getTaxAmountByIncomeTax = (
     let amountBracketToCalculate = 0; // bracket [0-100 = 100, 100-250 = 150, 150-500 = 350]
     let totalBracket = 0; // totalBracket that has been calculated, adds up until it equals the amount.
 
-    tax.brackets.forEach((taxBracket: TaxBracket) => {
+    tax.brackets.forEach((taxBracket: IncomeTaxBracket) => {
         amountBracketToCalculate =
             (amount < taxBracket.max ? amount : taxBracket.max) - totalBracket;
         totalBracket += amountBracketToCalculate;
@@ -73,3 +73,4 @@ export const getHarmonizedSalesTaxTotal = (
             )
             .toFixed(2)
     );
+
