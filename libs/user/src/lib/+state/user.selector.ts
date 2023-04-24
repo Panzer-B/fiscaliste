@@ -1,6 +1,6 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { User } from './user.model';
-import { getIncomeTaxesTotal, getNetIncome, tax_ca_qc } from '@fiscaliste/tax';
+import { calcNetIncome, tax_ca_qc } from '@fiscaliste/tax';
 
 export const featureKey = 'user';
 
@@ -47,7 +47,7 @@ export const selectCalcNetIncome = createSelector(
     selectGrossIncome,
     (grossIncome) => {
         if (grossIncome) {
-            return getNetIncome(grossIncome, tax_ca_qc.incomeTaxes); // replace tax_ca_qc by root context state value.
+            return calcNetIncome(grossIncome, tax_ca_qc.incomeTaxes); // replace tax_ca_qc by root context state value.
         } else {
             return 0;
         }

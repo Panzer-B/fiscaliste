@@ -1,7 +1,7 @@
 // Income Taxes
 export interface IncomeTax {
     name: string;
-    brackets: TaxBracket[];
+    brackets: IncomeTaxBracket[];
 }
 
 export interface IncomeTaxBracket {
