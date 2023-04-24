@@ -27,10 +27,4 @@ describe('user reducer', () => {
         const action = UserActions.setGrossIncome({ grossIncome: 50000 });
         expect(userReducer(state, action)).toEqual({ grossIncome: 50000 });
     });
-
-    test('setNetIncome', () => {
-        const state = {};
-        const action = UserActions.setNetIncome({ netIncome: 30000 });
-        expect(userReducer(state, action)).toEqual({ netIncome: 30000 });
-    });
 });

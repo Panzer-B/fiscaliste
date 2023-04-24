@@ -1,21 +1,21 @@
 import { IncomeTax } from './tax.model';
 import {
-    getIncomeTaxesTotal,
-    getTaxAmountByIncomeTax,
-    getTaxAmountByRate,
+    calcTotalIncomeTaxes,
+    calcIncomeTaxes,
+    multiplyByRate,
     getHarmonizedSalesTaxTotal,
-    getNetIncome,
+    calcNetIncome,
 } from './tax.util';
 import { tax_ca_qc } from './data/tax_ca_qc';
 
 describe('tax util', () => {
-    test('getTaxAmountByRate', () => {
+    test('multiplyByRate', () => {
         const rate = 0.05;
-        expect(getTaxAmountByRate(100, rate)).toEqual(5);
-        expect(getTaxAmountByRate(1000, rate)).toEqual(50);
+        expect(multiplyByRate(100, rate)).toEqual(5);
+        expect(multiplyByRate(1000, rate)).toEqual(50);
     });
 
-    test('getTaxAmountByIncomeTax', () => {
+    test('calcIncomeTaxes', () => {
         const incomeTax: IncomeTax = {
             name: 'annoying tax',
             brackets: [
@@ -33,15 +33,15 @@ describe('tax util', () => {
                 },
             ],
         };
-        expect(getTaxAmountByIncomeTax(30, incomeTax)).toEqual(6);
-        expect(getTaxAmountByIncomeTax(50, incomeTax)).toEqual(10);
-        expect(getTaxAmountByIncomeTax(300, incomeTax)).toEqual(115);
-        expect(getTaxAmountByIncomeTax(20000, incomeTax)).toEqual(9965);
+        expect(calcIncomeTaxes(30, incomeTax)).toEqual(6);
+        expect(calcIncomeTaxes(50, incomeTax)).toEqual(10);
+        expect(calcIncomeTaxes(300, incomeTax)).toEqual(115);
+        expect(calcIncomeTaxes(20000, incomeTax)).toEqual(9965);
     });
 
-    test('getIncomeTaxesTotal', () => {
+    test('calcTotalIncomeTaxes', () => {
         const incomeTaxes = tax_ca_qc.incomeTaxes;
-        expect(getIncomeTaxesTotal(40000, incomeTaxes)).toEqual(9861.2);
+        expect(calcTotalIncomeTaxes(40000, incomeTaxes)).toEqual(9861.2);
     });
 
     test('getHarmonizedSalesTaxTotal', () => {
@@ -49,9 +49,9 @@ describe('tax util', () => {
         expect(getHarmonizedSalesTaxTotal(1, taxRates)).toEqual(0.15);
     });
 
-    test('getNetIncome', () => {
+    test('calcNetIncome', () => {
         const grossIncome = 40000;
         const taxRates = tax_ca_qc.incomeTaxes;
-        expect(getNetIncome(grossIncome, taxRates)).toEqual(30138.8);
+        expect(calcNetIncome(grossIncome, taxRates)).toEqual(30138.8);
     });
 });

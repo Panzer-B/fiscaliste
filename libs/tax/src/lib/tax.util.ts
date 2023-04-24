@@ -1,34 +1,34 @@
-import { IncomeTax, TaxBracket, TaxRate } from './tax.model';
+import { IncomeTax, IncomeTaxBracket, TaxRate } from './tax.model';
 
 //==========================
 // Utils
 //==========================
-export const getTaxAmountByRate = (amount: number, rate: number): number =>
+export const multiplyByRate = (amount: number, rate: number): number =>
     Math.round(amount * rate * 100) / 100;
 
 //==========================
 // Income Tax
 //==========================
 /**
- * getTaxAMountByIncomeTax
+ * calcIncomeTaxes
  * apply all the different tax rate brackets on an income
  * @param amount
  * @param tax
  * @returns
  */
-export const getTaxAmountByIncomeTax = (
+export const calcIncomeTaxes = (
     amount: number,
-    tax: IncomeTax
+    incomeTax: IncomeTax
 ): number => {
     let totalTaxes = 0; // total taxes
     let amountBracketToCalculate = 0; // bracket [0-100 = 100, 100-250 = 150, 150-500 = 350]
     let totalBracket = 0; // totalBracket that has been calculated, adds up until it equals the amount.
 
-    tax.brackets.forEach((taxBracket: TaxBracket) => {
+    incomeTax.brackets.forEach((taxBracket: IncomeTaxBracket) => {
         amountBracketToCalculate =
             (amount < taxBracket.max ? amount : taxBracket.max) - totalBracket;
         totalBracket += amountBracketToCalculate;
-        const taxAmount = getTaxAmountByRate(
+        const taxAmount = multiplyByRate(
             amountBracketToCalculate,
             taxBracket.rate
         );
@@ -41,21 +41,24 @@ export const getTaxAmountByIncomeTax = (
  * getIncomeTaxesTotal
  * calculate all income taxes on a gross income (federal + provincial)
  */
-export const getIncomeTaxesTotal = (
+export const calcTotalIncomeTaxes = (
     income: number,
-    taxes: IncomeTax[]
+    incomeTaxes: IncomeTax[]
 ): number =>
-    taxes
-        .map((tax: IncomeTax) => getTaxAmountByIncomeTax(income, tax))
+    incomeTaxes
+        .map((tax: IncomeTax) => calcIncomeTaxes(income, tax))
         .reduce((partialSum, currentAmount) => partialSum + currentAmount, 0);
 
-export const getNetIncome = (
+        // TODO : Check if we need a service or a meta reducer to get the context.. in order to get the tax data.
+export const calcNetIncome = (
     grossIncome: number,
-    taxes: IncomeTax[]
+    incomeTaxes: IncomeTax[]
 ): number => {
     // TODO : apply tax credits
-    return grossIncome - getIncomeTaxesTotal(grossIncome, taxes);
+    // TODO : Other taxes
+    return grossIncome - calcTotalIncomeTaxes(grossIncome, incomeTaxes);
 };
+
 
 //==========================
 // Harmonized Sales Tax
@@ -66,10 +69,11 @@ export const getHarmonizedSalesTaxTotal = (
 ): number =>
     Number(
         taxRates
-            .map((taxRate: TaxRate) => getTaxAmountByRate(amount, taxRate.rate))
+            .map((taxRate: TaxRate) => multiplyByRate(amount, taxRate.rate))
             .reduce(
                 (partialSum, currentAmount) => partialSum + currentAmount,
                 0
             )
             .toFixed(2)
     );
+

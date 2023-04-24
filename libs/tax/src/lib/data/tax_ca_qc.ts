@@ -52,7 +52,7 @@ export const tax_ca_qc = {
                     rate: 0.24,
                 },
                 {
-                    max: 9999999999,
+                    max: Infinity,
                     rate: 0.2575,
                 },
             ],
@@ -81,7 +81,7 @@ export const tax_ca_qc = {
                     rate: 0.29,
                 },
                 {
-                    max: 9999999999,
+                    max: Infinity,
                     rate: 0.33,
                 },
             ],
